@@ -1,21 +1,15 @@
 <template>
-  <div>
-
-  </div>
+  <div id="app"></div>
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-
-
 </style>
