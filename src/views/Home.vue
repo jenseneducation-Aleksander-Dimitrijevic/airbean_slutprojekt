@@ -1,9 +1,8 @@
 <template>
-  <div class="home-container">
-    <div
-      class="card-image"
-      :style="{ backgroundImage: 'url(' + require('@/assets/img/airbean-landing.svg') + ')' }"
-    ></div>
+  <div class="left-image-container">
+    <h1>AIR BEAN</h1>
+    <h6>D R O N E D E L I V E R E D C O F F E E</h6>
+    <div class="right-image-container"></div>
   </div>
 </template>
 
@@ -11,16 +10,18 @@
 export default {};
 </script>
 
-<style lang="scss" scoped>
-.home-container {
-  background: url("~@/assets/img/graphics-header.svg") no-repeat center/100%;
+<style lang="scss">
+.left-image-container {
+  background: url("~@/assets/img/intro-graphic-left.svg") no-repeat top/50%;
   height: 100vh;
   width: 100%;
 
-  .card-image {
+  h1,
+  h6 {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgb(255, 255, 255);
   }
 }
 </style>
