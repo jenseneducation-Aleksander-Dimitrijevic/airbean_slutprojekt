@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-    <Home />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Home from "@/views/Home.vue";
-
-export default {
-  components: {
-    Home
-  }
-};
+export default {};
 </script>
 
 <style lang="scss">
+@import "scss/fonts";
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  font-family: $poppins-font;
 }
 </style>
