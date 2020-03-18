@@ -1,29 +1,24 @@
 <template>
   <div class="menu">
-    <div
-      class="top-image"
-      :style="{ backgroundImage: 'url(' + require('@/assets/img/graphics-header.svg') + ')' }"
-    ></div>
+    <Banner />
     <Heading heading="Meny" />
+    <MenuList />
+    <Banner addClass="reverse" />
   </div>
 </template>
 
 <script>
+import Banner from "@/components/Banner.vue";
 import Heading from "@/components/Heading.vue";
+import MenuList from "@/components/MenuList.vue";
 export default {
   name: "Menu",
   components: {
-    Heading
+    Heading,
+    Banner,
+    MenuList
   }
 };
 </script>
 
-<style lang="scss" scoped>
-.top-image {
-  width: 100%;
-  height: 80px;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-</style>
+<style lang="scss"></style>
