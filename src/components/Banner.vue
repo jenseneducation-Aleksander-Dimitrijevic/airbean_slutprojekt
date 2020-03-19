@@ -1,19 +1,14 @@
 <template>
-  <div
-    class="banner"
-    :class="addClass"
-    :style="{
-      backgroundImage:
-        'url(' + require('@/assets/img/graphics-header.svg') + ')'
-    }"
-  ></div>
+  <div class="banner" :style="{
+      backgroundImage: `url(${imgUrl})`
+    }"></div>
 </template>
 
 <script>
 export default {
   name: "Banner",
   props: {
-    addClass: String
+    imgUrl: String
   }
 };
 </script>
@@ -22,13 +17,8 @@ export default {
 .banner {
   width: 100%;
   height: 90px;
-  background-size: 100%;
-  background-repeat: repeat-x;
+  background-size: cover;
   background-position: center;
-
-  &.reverse {
-    transform: scaleY(-1);
-    margin-top: 4rem;
-  }
+  background-repeat: no-repeat;
 }
 </style>

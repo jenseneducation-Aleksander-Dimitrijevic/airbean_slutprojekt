@@ -35,6 +35,7 @@ export default {
 <style lang="scss" scoped>
 .menu-list {
   width: 100%;
+  margin: 2rem 0;
   padding: 0 1rem;
   list-style: none;
 
@@ -42,7 +43,9 @@ export default {
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
+    padding-bottom: 0.5rem;
     justify-content: space-between;
+    border-bottom: 1px solid #ccc;
     section {
       display: flex;
       flex-flow: column;
@@ -51,7 +54,7 @@ export default {
 
     i {
       color: #000;
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       margin-right: 0.5rem;
     }
 
