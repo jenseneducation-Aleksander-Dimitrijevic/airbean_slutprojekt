@@ -1,14 +1,17 @@
 <template>
   <div>
+    <ul v-if="items">
+      <li v-for="(item,index) in items" :key="index">{{item.title}} ({{ item.count }})</li>
+    </ul>
     <ul class="menu-list">
-      <li v-for="menuItem in menuItems" :key="menuItem.id">
+      <li v-for="item in menuItems" :key="item.id">
         <div class="menu-item">
-          <i class="fas fa-plus-circle"></i>
+          <i class="fas fa-plus-circle" @click="addNewItem(item)"></i>
           <section>
-            <span class="name">{{ menuItem.title }}</span>
-            <span class="desc">{{ menuItem.desc }}</span>
+            <span class="name">{{ item.title }}</span>
+            <span class="desc">{{ item.desc }}</span>
           </section>
-          <span class="price">{{ menuItem.price }} kr</span>
+          <span class="price">{{ item.price }} kr</span>
         </div>
       </li>
     </ul>
@@ -28,6 +31,24 @@ export default {
     return MenuServices.getMenuItems().then(res => {
       this.menuItems = res.data;
     });
+  },
+  methods: {
+    addNewItem(item) {
+      const menuItem = this.items.find(coffe => coffe.title == item.title);
+      if (menuItem == null) {
+        this.$store.dispatch("addNewItem", {
+          title: item.title,
+          count: 1
+        });
+      } else {
+        menuItem.count += 1;
+      }
+    }
+  },
+  computed: {
+    items() {
+      return this.$store.state.items;
+    }
   }
 };
 </script>
@@ -38,6 +59,10 @@ export default {
   margin: 2rem 0;
   padding: 0 1rem;
   list-style: none;
+
+  .items {
+    display: block;
+  }
 
   .menu-item {
     margin-bottom: 1rem;
