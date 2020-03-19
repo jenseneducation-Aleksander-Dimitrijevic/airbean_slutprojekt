@@ -1,9 +1,9 @@
 <template>
   <div class="menu">
-    <Banner />
+    <Banner :imgUrl="require('@/assets/img/graphics-header.svg')" />
     <Heading heading="Meny" />
     <MenuList />
-    <Banner addClass="reverse" />
+    <Banner :imgUrl="require('@/assets/img/graphics-footer.svg')" />
   </div>
 </template>
 
