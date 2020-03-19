@@ -1,11 +1,18 @@
 <template>
   <div id="app">
+    <Hamburger />
     <router-view />
   </div>
 </template>
 
 <script>
-export default {};
+import Hamburger from "@/components/Hamburger.vue";
+
+export default {
+  components: {
+    Hamburger
+  }
+};
 </script>
 
 <style lang="scss">
