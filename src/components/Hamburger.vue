@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar" :class="{'toggle-menu' : isOpen}">
+  <div class="navbar" :class="{'toggle-menu' : isOpen, 'set-fixed': cartOpen}">
     <div class="nav-icon" @click="toggleMenu">
       <div class="lines">
         <div />
@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <i class="fab fa-opencart cart-btn"></i>
+    <i class="fab fa-opencart cart-btn" @click="toggleCart"></i>
   </div>
 </template>
 
@@ -17,11 +17,17 @@ export default {
   methods: {
     toggleMenu() {
       this.$store.dispatch("toggleMenu");
+    },
+    toggleCart() {
+      this.$store.dispatch("toggleCart");
     }
   },
   computed: {
     isOpen() {
       return this.$store.state.isOpen;
+    },
+    cartOpen() {
+      return this.$store.state.cartOpen;
     }
   }
 };
@@ -52,7 +58,7 @@ export default {
   }
 
   .nav-icon {
-    z-index: 1;
+    z-index: 3;
     width: 50px;
     height: 50px;
     display: flex;
@@ -84,6 +90,10 @@ export default {
         transform: rotate(-45deg) translate(5px, -6px);
       }
     }
+  }
+
+  &.set-fixed {
+    position: fixed;
   }
 }
 </style>

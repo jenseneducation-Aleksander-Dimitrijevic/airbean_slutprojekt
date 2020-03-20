@@ -41,6 +41,7 @@ export default {
 .pop-up {
   top: 0;
   left: 0;
+  z-index: 2;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -52,7 +53,6 @@ export default {
   transform: translateX(-100%);
 
   a.home-btn {
-    z-index: 2;
     top: 1.7rem;
     right: 1rem;
     color: #fff;

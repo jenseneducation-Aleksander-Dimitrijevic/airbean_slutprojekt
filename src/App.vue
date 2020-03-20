@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Cart />
     <Hamburger />
     <pop-up-menu />
     <router-view />
@@ -9,11 +10,13 @@
 <script>
 import Hamburger from "@/components/Hamburger.vue";
 import PopUpMenu from "@/components/PopUpMenu.vue";
+import Cart from "@/components/Cart.vue";
 
 export default {
   components: {
     Hamburger,
-    PopUpMenu
+    PopUpMenu,
+    Cart
   }
 };
 </script>
