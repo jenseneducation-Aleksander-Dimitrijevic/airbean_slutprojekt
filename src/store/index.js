@@ -5,16 +5,23 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    items: []
+    items: [],
+    isOpen: false
   },
   mutations: {
     ADD_NEW_ITEM(state, newItem) {
       state.items.push(newItem);
+    },
+    TOGGLE_MENU(state) {
+      state.isOpen = !state.isOpen
     }
   },
   actions: {
     addNewItem(context, newItem) {
       context.commit("ADD_NEW_ITEM", newItem);
+    },
+    toggleMenu(context) {
+      context.commit('TOGGLE_MENU')
     }
   }
 });
