@@ -12,6 +12,7 @@ export default new Vuex.Store({
   mutations: {
     ADD_NEW_ITEM(state, newItem) {
       state.items.push(newItem);
+      console.log(state.items);
     },
     TOGGLE_MENU(state) {
       state.isOpen = !state.isOpen;

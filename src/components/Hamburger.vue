@@ -8,7 +8,9 @@
       </div>
     </div>
 
-    <i class="fab fa-opencart cart-btn" @click="toggleCart"></i>
+    <i class="fab fa-opencart cart-btn" @click="toggleCart">
+      <span class="item-count">{{ getTotalItems }}</span>
+    </i>
   </div>
 </template>
 
@@ -28,6 +30,11 @@ export default {
     },
     cartOpen() {
       return this.$store.state.cartOpen;
+    },
+    getTotalItems() {
+      return this.$store.state.items.reduce((sum, item) => {
+        return sum + item.count;
+      }, 0);
     }
   }
 };
@@ -51,10 +58,25 @@ export default {
     height: 55px;
     display: flex;
     color: #fff;
+    position: relative;
     border-radius: 50%;
     align-items: center;
     background: #2e2925;
     justify-content: center;
+
+    span.item-count {
+      top: -10px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      padding: 14px;
+      display: flex;
+      border-radius: 50%;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      background: rgb(236, 95, 39);
+    }
   }
 
   .nav-icon {
@@ -66,6 +88,7 @@ export default {
     transition: 0.5s;
     border-radius: 50%;
     background: #fff;
+    position: relative;
     align-items: center;
     justify-content: center;
 

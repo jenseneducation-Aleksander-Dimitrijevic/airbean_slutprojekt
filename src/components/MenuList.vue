@@ -1,8 +1,5 @@
 <template>
   <div>
-    <ul v-if="items">
-      <li v-for="(item,index) in items" :key="index">{{item.title}} ({{ item.count }})</li>
-    </ul>
     <ul class="menu-list">
       <li v-for="item in menuItems" :key="item.id">
         <div class="menu-item">
@@ -38,6 +35,7 @@ export default {
       if (menuItem == null) {
         this.$store.dispatch("addNewItem", {
           title: item.title,
+          price: item.price,
           count: 1
         });
       } else {
@@ -53,7 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .menu-list {
   width: 100%;
   margin: 2rem 0;
