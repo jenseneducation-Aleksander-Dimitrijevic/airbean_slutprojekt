@@ -7,12 +7,14 @@
         <div class="menu-item">
           <section>
             <span class="name">{{ item.title }}</span>
-            <span class="desc">{{ calcTotalAmount }} kr</span>
+            <span>{{ item.price * item.count }} kr</span>
           </section>
-          <span class="price">{{ item.count }}</span>
+          <span>{{ item.count }}</span>
         </div>
       </li>
     </ul>
+
+    <h1 :style="{fontWeight: 'bold'}">Totalt: {{ getTotalPrice }} kr</h1>
   </div>
 </template>
 
@@ -26,9 +28,9 @@ export default {
     items() {
       return this.$store.state.items;
     },
-    calcTotalAmount() {
+    getTotalPrice() {
       return this.$store.state.items.reduce((sum, item) => {
-        return sum + item.price;
+        return sum + item.price * item.count;
       }, 0);
     }
   }

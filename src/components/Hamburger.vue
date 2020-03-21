@@ -9,7 +9,7 @@
     </div>
 
     <i class="fab fa-opencart cart-btn" @click="toggleCart">
-      <span class="item-count">{{ getTotalItems }}</span>
+      <span class="item-count" :class="{'animated bounceIn' : countItems }">{{ countItems }}</span>
     </i>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
     cartOpen() {
       return this.$store.state.cartOpen;
     },
-    getTotalItems() {
+    countItems() {
       return this.$store.state.items.reduce((sum, item) => {
         return sum + item.count;
       }, 0);
