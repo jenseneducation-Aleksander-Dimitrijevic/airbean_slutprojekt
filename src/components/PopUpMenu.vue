@@ -60,7 +60,7 @@ export default {
     font-size: 1.3rem;
     position: absolute;
     text-decoration: none;
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
   }
 
   ul {

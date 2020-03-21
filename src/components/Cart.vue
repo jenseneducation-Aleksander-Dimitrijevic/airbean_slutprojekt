@@ -1,6 +1,20 @@
 <template>
-  <div class="cart" :class="{'animated bounceIn' : cartOpen}">
+  <div class="cart" :class="{'animated fadeIn' : cartOpen}">
     <h1>Din beställning</h1>
+
+    <ul class="menu-list">
+      <li v-for="(item,index) in items" :key="index">
+        <div class="menu-item">
+          <section>
+            <span class="name">{{ item.title }}</span>
+            <span>{{ item.price * item.count }} kr</span>
+          </section>
+          <span>{{ item.count }}</span>
+        </div>
+      </li>
+    </ul>
+
+    <h1 :style="{fontWeight: 'bold'}">Totalt: {{ getTotalPrice }} kr</h1>
   </div>
 </template>
 
@@ -10,6 +24,14 @@ export default {
   computed: {
     cartOpen() {
       return this.$store.state.cartOpen;
+    },
+    items() {
+      return this.$store.state.items;
+    },
+    getTotalPrice() {
+      return this.$store.state.items.reduce((sum, item) => {
+        return sum + item.price * item.count;
+      }, 0);
     }
   }
 };
@@ -17,13 +39,15 @@ export default {
 
 <style lang="scss" scoped>
 .cart {
+  left: -50%;
+  right: -50%;
   top: 5rem;
-  right: 0;
-  left: 1rem;
   z-index: 1;
   width: 90%;
   height: 80%;
+  margin: auto;
   padding: 20px;
+  overflow: auto;
   position: fixed;
   background: #fff;
   border-radius: 5px;
@@ -32,7 +56,7 @@ export default {
 
   &::after {
     right: 13px;
-    content: " ";
+    content: "";
     bottom: 100%;
     margin-left: -5px;
     position: absolute;
@@ -47,8 +71,9 @@ export default {
     text-align: center;
   }
 
-  &.animated.bounceIn {
+  &.animated.fadeIn {
     visibility: visible;
+    animation-duration: 0.2s;
   }
 }
 </style>

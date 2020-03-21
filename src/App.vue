@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Cart />
+    <back-drop />
     <Hamburger />
     <pop-up-menu />
     <router-view />
@@ -11,12 +12,14 @@
 import Hamburger from "@/components/Hamburger.vue";
 import PopUpMenu from "@/components/PopUpMenu.vue";
 import Cart from "@/components/Cart.vue";
+import BackDrop from "@/components/BackDrop.vue";
 
 export default {
   components: {
     Hamburger,
     PopUpMenu,
-    Cart
+    Cart,
+    BackDrop
   }
 };
 </script>
