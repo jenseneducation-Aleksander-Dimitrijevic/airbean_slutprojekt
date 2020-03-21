@@ -9,7 +9,11 @@
     </div>
 
     <i class="fab fa-opencart cart-btn" @click="toggleCart">
-      <span class="item-count" :class="{'animated bounceIn' : countItems }">{{ countItems }}</span>
+      <span
+        v-show="countItems"
+        class="item-count"
+        :class="{'animated bounceIn' : countItems }"
+      >{{ countItems }}</span>
     </i>
   </div>
 </template>

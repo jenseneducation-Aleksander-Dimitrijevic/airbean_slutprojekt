@@ -9,12 +9,20 @@
             <span class="name">{{ item.title }}</span>
             <span>{{ item.price * item.count }} kr</span>
           </section>
-          <span>{{ item.count }}</span>
+          <select v-model.number="item.count">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
         </div>
       </li>
     </ul>
 
-    <h1 :style="{fontWeight: 'bold'}">Totalt: {{ getTotalPrice }} kr</h1>
+    <h2>Totalt: {{ getTotalPrice }} kr</h2>
+    <span>inkl moms + drönarleverans</span>
   </div>
 </template>
 
@@ -53,6 +61,10 @@ export default {
   border-radius: 5px;
   visibility: hidden;
   box-shadow: 0 0 30px rgba(#000, 0.5);
+
+  .menu-list {
+    padding: 0;
+  }
 
   &::after {
     right: 13px;
