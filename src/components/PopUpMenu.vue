@@ -13,7 +13,7 @@
         <router-link class="b-bottom" to="/menu" @click.native="toggleMenu">Meny</router-link>
       </li>
       <li>
-        <router-link class="b-bottom" to="/" @click.native="toggleMenu">Vårt kaffe</router-link>
+        <router-link class="b-bottom" to="/our-coffee" @click.native="toggleMenu">Vårt kaffe</router-link>
       </li>
       <li>
         <router-link to="/" @click.native="toggleMenu">Orderstatus</router-link>

@@ -32,7 +32,7 @@ export default {
   box-sizing: border-box;
 }
 body {
-  background-color: #eee;
+  background-color: #f3e4e1;
   font-family: $poppins-font;
 }
 </style>
