@@ -9,16 +9,13 @@
     </div>
 
     <i class="fab fa-opencart cart-btn" @click="toggleCart">
-      <span
-        v-show="countItems"
-        class="item-count"
-        :class="{'animated bounceIn' : countItems }"
-      >{{ countItems }}</span>
+      <span v-show="countItems" class="item-count">{{ countItems }}</span>
     </i>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 export default {
   methods: {
     toggleMenu() {
@@ -29,14 +26,16 @@ export default {
     }
   },
   computed: {
-    isOpen() {
-      return this.$store.state.isOpen;
-    },
-    cartOpen() {
-      return this.$store.state.cartOpen;
-    },
+    ...mapState(["isOpen", "cartOpen"]),
+    ...mapGetters(["countItems"])
+  },
+  watch: {
     countItems() {
-      return this.$store.getters.countItems;
+      const itemCount = document.querySelector(".item-count");
+      itemCount.classList.add("animated", "bounceIn");
+      setTimeout(() => {
+        itemCount.classList.remove("animated", "bounceIn");
+      }, 500);
     }
   }
 };
@@ -68,11 +67,11 @@ export default {
     box-shadow: 0 0 10px rgba(#000, 0.3);
 
     span.item-count {
-      top: -10px;
+      top: -5px;
       right: -5px;
-      width: 20px;
-      height: 20px;
-      padding: 14px;
+      width: 10px;
+      height: 10px;
+      padding: 12px;
       display: flex;
       border-radius: 50%;
       position: absolute;
