@@ -9,19 +9,19 @@
             <span class="name">{{ item.title }}</span>
             <span>{{ item.price * item.count }} kr</span>
           </section>
-          <select v-model.number="item.count">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+          <p class="item-selected">
+            <i class="fas fa-angle-up" @click="item.count++"></i>
+            {{ item.count }}
+            <i class="fas fa-angle-down" @click="item.count--"></i>
+          </p>
         </div>
       </li>
     </ul>
 
-    <h2 v-show="getTotalPrice">Totalt: {{ getTotalPrice }} kr</h2>
+    <h2 v-show="getTotalPrice">
+      Totalt:
+      <p>{{ getTotalPrice }} kr</p>
+    </h2>
     <span v-show="getTotalPrice">inkl moms + drönarleverans</span>
     <span v-show="!getTotalPrice">Inget i korgen</span>
 
@@ -30,18 +30,12 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "Cart",
   computed: {
-    cartOpen() {
-      return this.$store.state.cartOpen;
-    },
-    items() {
-      return this.$store.state.items;
-    },
-    getTotalPrice() {
-      return this.$store.getters.getTotalPrice;
-    }
+    ...mapState(["cartOpen", "items"]),
+    ...mapGetters(["getTotalPrice"])
   }
 };
 </script>
@@ -57,6 +51,7 @@ export default {
   margin: auto;
   padding: 20px;
   position: fixed;
+  overflow-y: auto;
   background: #fff;
   border-radius: 5px;
   visibility: hidden;
@@ -66,7 +61,19 @@ export default {
     padding: 0;
 
     .name {
+      font-weight: 100;
       font-style: initial;
+    }
+
+    p.item-selected {
+      display: flex;
+      flex-flow: column;
+      text-align: left;
+      font-size: 1.1rem;
+
+      i {
+        font-size: 1.2rem;
+      }
     }
   }
 
@@ -83,12 +90,15 @@ export default {
 
   h1 {
     font-weight: 100;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: center;
   }
 
   h2 {
+    width: 100%;
+    display: flex;
     font-size: 1.3rem;
+    justify-content: space-between;
   }
   span {
     font-size: 0.8rem;
