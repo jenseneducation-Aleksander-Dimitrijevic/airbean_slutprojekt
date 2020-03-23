@@ -25,17 +25,22 @@
     <span v-show="getTotalPrice">inkl moms + drönarleverans</span>
     <span v-show="!getTotalPrice">Inget i korgen</span>
 
-    <button class="order-btn" v-show="getTotalPrice">Take my money!</button>
+    <router-link @click.native="itemReset" :to="{name: 'our-status'}">
+      <button @click="toggleCart" class="order-btn" v-show="getTotalPrice">Take my money!</button>
+    </router-link>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   name: "Cart",
   computed: {
     ...mapState(["cartOpen", "items"]),
     ...mapGetters(["getTotalPrice"])
+  },
+  methods: {
+    ...mapActions(["toggleCart", "itemReset"])
   }
 };
 </script>
@@ -108,6 +113,7 @@ export default {
   .order-btn {
     width: 100%;
     border: none;
+    outline: none;
     padding: 20px;
     color: #fff;
     cursor: pointer;

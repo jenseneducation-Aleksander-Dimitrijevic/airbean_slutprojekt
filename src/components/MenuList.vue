@@ -17,6 +17,7 @@
 
 <script>
 import MenuServices from "../api/MenuServices";
+import { mapState } from "vuex";
 export default {
   name: "MenuList",
   data() {
@@ -44,9 +45,7 @@ export default {
     }
   },
   computed: {
-    items() {
-      return this.$store.state.items;
-    }
+    ...mapState(["items"])
   }
 };
 </script>

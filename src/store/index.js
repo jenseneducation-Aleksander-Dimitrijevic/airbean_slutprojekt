@@ -30,6 +30,9 @@ export default new Vuex.Store({
     },
     TOGGLE_CART(state) {
       state.cartOpen = !state.cartOpen;
+    },
+    ITEM_RESET(state) {
+      state.items = []
     }
   },
   actions: {
@@ -41,6 +44,9 @@ export default new Vuex.Store({
     },
     toggleCart(context) {
       context.commit("TOGGLE_CART");
+    },
+    itemReset(context) {
+      context.commit('ITEM_RESET');
     }
   }
 });
