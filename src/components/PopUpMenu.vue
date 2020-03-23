@@ -23,11 +23,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   computed: {
-    isOpen() {
-      return this.$store.state.isOpen;
-    }
+    ...mapState(["isOpen"])
   },
   methods: {
     toggleMenu() {

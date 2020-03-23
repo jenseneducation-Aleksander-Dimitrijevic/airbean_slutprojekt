@@ -3,12 +3,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "BackDrop",
   computed: {
-    cartOpen() {
-      return this.$store.state.cartOpen;
-    }
+    ...mapState(["cartOpen"])
   },
   methods: {
     toggleCart() {
