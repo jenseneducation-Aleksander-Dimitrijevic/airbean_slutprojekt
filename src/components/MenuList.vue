@@ -78,6 +78,8 @@ export default {
     i {
       color: #000;
       font-size: 1.7rem;
+      background: #fff;
+      border-radius: 50%;
       margin-right: 0.5rem;
     }
 

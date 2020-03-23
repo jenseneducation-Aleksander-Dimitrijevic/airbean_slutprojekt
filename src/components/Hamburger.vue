@@ -36,9 +36,7 @@ export default {
       return this.$store.state.cartOpen;
     },
     countItems() {
-      return this.$store.state.items.reduce((sum, item) => {
-        return sum + item.count;
-      }, 0);
+      return this.$store.getters.countItems;
     }
   }
 };
@@ -67,6 +65,7 @@ export default {
     align-items: center;
     background: #2e2925;
     justify-content: center;
+    box-shadow: 0 0 10px rgba(#000, 0.3);
 
     span.item-count {
       top: -10px;
@@ -95,6 +94,7 @@ export default {
     position: relative;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 10px rgba(#000, 0.3);
 
     .lines > div {
       width: 25px;

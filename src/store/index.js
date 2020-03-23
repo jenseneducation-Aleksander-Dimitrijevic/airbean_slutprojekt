@@ -9,10 +9,21 @@ export default new Vuex.Store({
     isOpen: false,
     cartOpen: false
   },
+  getters: {
+    getTotalPrice(state) {
+      return state.items.reduce((sum, item) => {
+        return sum + item.price * item.count;
+      }, 0);
+    },
+    countItems(state) {
+      return state.items.reduce((sum, item) => {
+        return sum + item.count;
+      }, 0);
+    }
+  },
   mutations: {
     ADD_NEW_ITEM(state, newItem) {
       state.items.push(newItem);
-      console.log(state.items);
     },
     TOGGLE_MENU(state) {
       state.isOpen = !state.isOpen;

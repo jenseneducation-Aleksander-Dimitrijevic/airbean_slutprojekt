@@ -4,7 +4,7 @@
 
     <ul class="menu-list">
       <li v-for="(item,index) in items" :key="index">
-        <div class="menu-item">
+        <div class="menu-item" v-show="item.count">
           <section>
             <span class="name">{{ item.title }}</span>
             <span>{{ item.price * item.count }} kr</span>
@@ -21,8 +21,11 @@
       </li>
     </ul>
 
-    <h2>Totalt: {{ getTotalPrice }} kr</h2>
-    <span>inkl moms + drönarleverans</span>
+    <h2 v-show="getTotalPrice">Totalt: {{ getTotalPrice }} kr</h2>
+    <span v-show="getTotalPrice">inkl moms + drönarleverans</span>
+    <span v-show="!getTotalPrice">Inget i korgen</span>
+
+    <button class="order-btn" v-show="getTotalPrice">Take my money!</button>
   </div>
 </template>
 
@@ -37,9 +40,7 @@ export default {
       return this.$store.state.items;
     },
     getTotalPrice() {
-      return this.$store.state.items.reduce((sum, item) => {
-        return sum + item.price * item.count;
-      }, 0);
+      return this.$store.getters.getTotalPrice;
     }
   }
 };
@@ -55,7 +56,6 @@ export default {
   height: 80%;
   margin: auto;
   padding: 20px;
-  overflow: auto;
   position: fixed;
   background: #fff;
   border-radius: 5px;
@@ -64,6 +64,10 @@ export default {
 
   .menu-list {
     padding: 0;
+
+    .name {
+      font-style: initial;
+    }
   }
 
   &::after {
@@ -81,6 +85,29 @@ export default {
     font-weight: 100;
     font-size: 1.5rem;
     text-align: center;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+  span {
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  .order-btn {
+    width: 100%;
+    border: none;
+    padding: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 2rem auto;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 40px;
+    background: #2e2925;
+    text-transform: uppercase;
   }
 
   &.animated.fadeIn {
