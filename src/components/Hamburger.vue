@@ -55,6 +55,7 @@ export default {
   justify-content: space-between;
 
   i.cart-btn {
+    z-index: 1;
     width: 55px;
     height: 55px;
     display: flex;
