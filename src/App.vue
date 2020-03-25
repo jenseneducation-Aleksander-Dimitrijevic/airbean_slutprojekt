@@ -2,22 +2,22 @@
   <div id="app">
     <Cart />
     <back-drop />
-    <Hamburger />
-    <pop-up-menu />
+    <Navbar />
+    <Sidemenu />
     <router-view />
   </div>
 </template>
 
 <script>
-import Hamburger from "@/components/Hamburger.vue";
-import PopUpMenu from "@/components/PopUpMenu.vue";
+import Navbar from "@/components/Navbar.vue";
+import Sidemenu from "@/components/Sidemenu.vue";
 import Cart from "@/components/Cart.vue";
 import BackDrop from "@/components/BackDrop.vue";
 
 export default {
   components: {
-    Hamburger,
-    PopUpMenu,
+    Navbar,
+    Sidemenu,
     Cart,
     BackDrop
   }

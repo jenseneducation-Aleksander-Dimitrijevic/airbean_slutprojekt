@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar" :class="{'toggle-menu' : isOpen, 'set-fixed': cartOpen}">
+  <div class="navbar" :class="{'toggle-menu' : sideMenuOpen}">
     <div class="nav-icon" @click="toggleMenu">
       <div class="lines">
         <div />
@@ -26,7 +26,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["isOpen", "cartOpen"]),
+    ...mapState(["sideMenuOpen", "cartOpen"]),
     ...mapGetters(["countItems"])
   },
   watch: {
@@ -46,7 +46,6 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
   height: 80px;
   display: flex;
   padding: 0 1rem;
@@ -54,12 +53,34 @@ export default {
   align-items: center;
   justify-content: space-between;
 
+  .nav-icon {
+    width: 50px;
+    height: 50px;
+    z-index: 3;
+    display: flex;
+    padding: 10px;
+    transition: 0.5s;
+    border-radius: 50%;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(#000, 0.3);
+
+    .lines > div {
+      width: 25px;
+      height: 2px;
+      margin: 6px 0;
+      transition: 0.3s;
+      background: #000;
+    }
+  }
+
   i.cart-btn {
-    z-index: 1;
     width: 55px;
     height: 55px;
     display: flex;
     color: #fff;
+    z-index: 1;
     position: relative;
     border-radius: 50%;
     align-items: center;
@@ -82,29 +103,6 @@ export default {
     }
   }
 
-  .nav-icon {
-    z-index: 3;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    padding: 10px;
-    transition: 0.5s;
-    border-radius: 50%;
-    background: #fff;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(#000, 0.3);
-
-    .lines > div {
-      width: 25px;
-      height: 2px;
-      margin: 6px 0;
-      transition: 0.3s;
-      background: #000;
-    }
-  }
-
   &.toggle-menu {
     .nav-icon > .lines > div {
       &:nth-child(1) {
@@ -117,10 +115,6 @@ export default {
         transform: rotate(-45deg) translate(5px, -6px);
       }
     }
-  }
-
-  &.set-fixed {
-    position: fixed;
   }
 }
 </style>

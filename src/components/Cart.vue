@@ -25,7 +25,7 @@
     <span v-show="getTotalPrice">inkl moms + drönarleverans</span>
     <span v-show="!getTotalPrice">Inget i korgen</span>
 
-    <router-link @click.native="itemReset" :to="{name: 'our-status'}">
+    <router-link @click.native="itemReset" :to="{name: 'status'}">
       <button @click="toggleCart" class="order-btn" v-show="getTotalPrice">Take my money!</button>
     </router-link>
   </div>

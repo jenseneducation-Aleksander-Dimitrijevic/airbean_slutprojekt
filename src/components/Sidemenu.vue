@@ -1,8 +1,8 @@
 <template>
-  <div class="pop-up" :class="{'toggle-menu' : isOpen}">
+  <div class="side-menu" :class="{'toggle-menu' : sideMenuOpen}">
     <router-link
       class="home-btn"
-      :class="{'animated fadeInUp' : isOpen}"
+      :class="{'animated fadeInUp' : sideMenuOpen}"
       to="/"
       @click.native="toggleMenu"
     >
@@ -16,7 +16,7 @@
         <router-link class="b-bottom" to="/our-coffee" @click.native="toggleMenu">Vårt kaffe</router-link>
       </li>
       <li>
-        <router-link to="/our-status" @click.native="toggleMenu">Orderstatus</router-link>
+        <router-link to="/status" @click.native="toggleMenu">Orderstatus</router-link>
       </li>
     </ul>
   </div>
@@ -26,7 +26,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["isOpen"])
+    ...mapState(["sideMenuOpen"])
   },
   methods: {
     toggleMenu() {
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pop-up {
+.side-menu {
   top: 0;
   left: 0;
   z-index: 2;

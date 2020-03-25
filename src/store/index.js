@@ -1,13 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import MenuServices from "../api/MenuServices";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     items: [],
-    isOpen: false,
-    cartOpen: false
+    cartOpen: false,
+    sideMenuOpen: false,
+    menuItems: MenuServices.getMenuItems().then(res => res.data)
   },
   getters: {
     getTotalPrice(state) {
@@ -26,13 +28,13 @@ export default new Vuex.Store({
       state.items.push(newItem);
     },
     TOGGLE_MENU(state) {
-      state.isOpen = !state.isOpen;
+      state.sideMenuOpen = !state.sideMenuOpen;
     },
     TOGGLE_CART(state) {
       state.cartOpen = !state.cartOpen;
     },
     ITEM_RESET(state) {
-      state.items = []
+      state.items = [];
     }
   },
   actions: {
@@ -46,7 +48,7 @@ export default new Vuex.Store({
       context.commit("TOGGLE_CART");
     },
     itemReset(context) {
-      context.commit('ITEM_RESET');
+      context.commit("ITEM_RESET");
     }
   }
 });

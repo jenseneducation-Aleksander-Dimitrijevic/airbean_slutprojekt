@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="menu-list">
-      <li v-for="item in menuItems" :key="item.id">
+      <li v-for="item in listItems" :key="item.id">
         <div class="menu-item">
           <i class="fas fa-plus-circle" @click="addNewItem(item)"></i>
           <section>
@@ -16,19 +16,19 @@
 </template>
 
 <script>
-import MenuServices from "../api/MenuServices";
 import { mapState } from "vuex";
 export default {
   name: "MenuList",
   data() {
     return {
-      menuItems: {}
+      listItems: {}
     };
   },
-  created() {
-    return MenuServices.getMenuItems().then(res => {
-      this.menuItems = res.data;
-    });
+  computed: {
+    ...mapState(["items", "menuItems"])
+  },
+  async created() {
+    this.listItems = await this.menuItems;
   },
   methods: {
     addNewItem(item) {
@@ -43,9 +43,6 @@ export default {
         menuItem.count += 1;
       }
     }
-  },
-  computed: {
-    ...mapState(["items"])
   }
 };
 </script>
