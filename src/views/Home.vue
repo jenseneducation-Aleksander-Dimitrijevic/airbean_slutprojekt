@@ -15,8 +15,8 @@ export default {
   background: url("~@/assets/img/intro-graphic-left.svg"),
     url("~@/assets/img/intro-graphic-right.svg");
 
-  height: 100vh;
   width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

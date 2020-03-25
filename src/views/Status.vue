@@ -28,15 +28,24 @@ export default {};
 }
 
 .order-status {
-  text-align: center;
   height: 100vh;
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  justify-content: center;
 
   span {
     font-weight: 100;
   }
 
   h6 {
-    opacity: 0.5;
+    opacity: 0.6;
+    font-size: 1rem;
+    font-weight: bold;
+
+    span {
+      opacity: 0.8;
+    }
   }
 
   h2 {
