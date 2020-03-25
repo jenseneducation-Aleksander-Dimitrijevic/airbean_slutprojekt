@@ -1,9 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Menu from "../views/Menu.vue";
-import OurCoffee from "../views/OurCoffee.vue";
+import Home from "@/views/Home.vue";
+import Menu from "@/views/Menu.vue";
+import OurCoffee from "@/views/OurCoffee.vue";
 import Status from "@/views/Status.vue";
+import Profile from '@/views/Profile.vue';
+
 
 Vue.use(VueRouter);
 
@@ -27,6 +29,11 @@ const routes = [
     path: "/status",
     name: "status",
     component: Status
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile
   }
 ];
 

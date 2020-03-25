@@ -16,6 +16,9 @@
         <router-link class="b-bottom" to="/our-coffee" @click.native="toggleMenu">Vårt kaffe</router-link>
       </li>
       <li>
+        <router-link class="b-bottom" to="/profile" @click.native="toggleMenu">Min profil</router-link>
+      </li>
+      <li>
         <router-link to="/status" @click.native="toggleMenu">Orderstatus</router-link>
       </li>
     </ul>
