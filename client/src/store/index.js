@@ -7,7 +7,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     items: [],
+    newOrder: {},
     cartOpen: false,
+    isLoading: false,
     sideMenuOpen: false,
     menuItems: MenuServices.getMenuItems().then(res => res.data)
   },
@@ -35,6 +37,12 @@ export default new Vuex.Store({
     },
     ITEM_RESET(state) {
       state.items = [];
+    },
+    CREATE_ORDER(state, order) {
+      state.newOrder = order.data;
+    },
+    SET_LOADER(state) {
+      state.isLoading = !state.isLoading;
     }
   },
   actions: {
@@ -44,11 +52,18 @@ export default new Vuex.Store({
     toggleMenu(context) {
       context.commit("TOGGLE_MENU");
     },
-    toggleCart(context) {
+    async toggleCart(context) {
       context.commit("TOGGLE_CART");
     },
     itemReset(context) {
       context.commit("ITEM_RESET");
+      context.commit("TOGGLE_CART");
+    },
+    async createOrder(context) {
+      context.commit("SET_LOADER");
+      const order = await MenuServices.createNewOrder();
+      context.commit("SET_LOADER");
+      context.commit("CREATE_ORDER", order);
     }
   }
 });
