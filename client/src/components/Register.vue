@@ -37,7 +37,6 @@ export default {
   height: 80%;
   margin: 0 auto 2rem auto;
   padding: 20px;
-  position: fixed;
   overflow-y: auto;
   background: #f3e4e1;
   border-radius: 5px;
@@ -63,7 +62,7 @@ export default {
   }
 
   .goRegister {
-    width: 92%;
+    width: 100%;
     border: none;
     outline: none;
     padding: 13px;

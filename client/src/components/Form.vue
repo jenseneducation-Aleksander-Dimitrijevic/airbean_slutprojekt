@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .form-container {
   input[type="text"] {
-    width: 290px;
+    width: 100%;
     margin: 2px auto;
     font-size: 0.9rem;
     border-radius: 5px;
