@@ -1,15 +1,16 @@
 <template>
   <div class="order-status">
     <h6>
-      <span>Ordernummer</span> #12DV23F
+      <span>Ordernummer</span>
+      {{ newOrder.orderNr }}
     </h6>
-    <img :src="require('@/assets/img/drone.svg')" alt="logo" />
+    <img :class="{move : isLoading}" :src="require('@/assets/img/drone.svg')" alt="logo" />
     <h2>
       Din beställning
       <span>är på väg!</span>
     </h2>
     <h4>
-      13
+      {{ newOrder.eta }}
       <span>minuter</span>
     </h4>
     <router-link :to="{name: 'Home'}">
@@ -19,19 +20,21 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState(["newOrder", "isLoading"])
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-* {
-  background: #e5674e;
-}
-
 .order-status {
   height: 100vh;
   display: flex;
   flex-flow: column;
   text-align: center;
+  background: #e5674e;
   justify-content: center;
 
   span {
@@ -65,6 +68,30 @@ export default {};
   }
   img {
     padding: 25px;
+    position: relative;
+    background: transparent;
+
+    &.move {
+      animation: 1s move linear infinite;
+
+      @keyframes move {
+        0% {
+          top: 0;
+        }
+        25% {
+          top: 15px;
+        }
+        50% {
+          top: 20px;
+        }
+        75% {
+          top: 15px;
+        }
+        100% {
+          top: 0;
+        }
+      }
+    }
   }
   .goHome {
     width: 55%;

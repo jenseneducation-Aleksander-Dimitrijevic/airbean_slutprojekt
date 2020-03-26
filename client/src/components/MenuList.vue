@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="menu-list">
-      <li v-for="item in listItems" :key="item.id">
+      <li v-for="item in listItems.menu" :key="item.id">
         <div class="menu-item">
           <i class="fas fa-plus-circle" @click="addNewItem(item)"></i>
           <section>
@@ -28,7 +28,11 @@ export default {
     ...mapState(["items", "menuItems"])
   },
   async created() {
-    this.listItems = await this.menuItems;
+    try {
+      this.listItems = await this.menuItems;
+    } catch (e) {
+      console.log(e.message);
+    }
   },
   methods: {
     addNewItem(item) {
