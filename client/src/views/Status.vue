@@ -1,21 +1,23 @@
 <template>
-  <div class="order-status">
-    <h6>
-      <span>Ordernummer</span>
-      {{ newOrder.orderNr }}
-    </h6>
-    <img :class="{move : isLoading}" :src="require('@/assets/img/drone.svg')" alt="logo" />
-    <h2>
-      Din beställning
-      <span>är på väg!</span>
-    </h2>
-    <h4>
-      {{ newOrder.eta }}
-      <span>minuter</span>
-    </h4>
-    <router-link :to="{name: 'Home'}">
-      <button class="goHome">Okay, cool!</button>
-    </router-link>
+  <div>
+    <div class="order-status">
+      <h6>
+        <span>Ordernummer</span>
+        {{ newOrder.orderNr }}
+      </h6>
+      <img :class="{move : isLoading}" :src="require('@/assets/img/drone.svg')" alt="logo" />
+      <h2>
+        Din beställning
+        <span>är på väg!</span>
+      </h2>
+      <h4>
+        {{ newOrder.eta }}
+        <span>minuter</span>
+      </h4>
+      <router-link :to="{name: 'Home'}">
+        <button class="goHome">Okay, cool!</button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -62,7 +64,8 @@ export default {
   h6,
   h5,
   h4,
-  h2 {
+  h2,
+  h1 {
     color: #fff;
     padding: 10px;
   }

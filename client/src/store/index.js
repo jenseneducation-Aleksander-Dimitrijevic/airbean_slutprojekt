@@ -40,7 +40,6 @@ export default new Vuex.Store({
     },
     CREATE_ORDER(state, order) {
       state.newOrder = order.data;
-      console.log(state.newOrder);
     },
     SET_LOADER(state) {
       state.isLoading = !state.isLoading;
