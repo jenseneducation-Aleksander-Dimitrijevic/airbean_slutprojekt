@@ -16,7 +16,20 @@
         <router-link class="b-bottom" to="/our-coffee" @click.native="toggleMenu">Vårt kaffe</router-link>
       </li>
       <li>
-        <router-link class="b-bottom" to="/profile" @click.native="toggleMenu">Min profil</router-link>
+        <router-link
+          v-if="typeof registered.id === 'undefined'"
+          to="/profile"
+          class="b-bottom"
+          @click.native="toggleMenu"
+        >Min profil</router-link>
+
+        <!-- Refactor -->
+        <router-link
+          v-else-if="typeof registered.id !== 'undefined'"
+          :to="{name:'orderhistory', params: {id: registered.id}}"
+          class="b-bottom"
+          @click.native="toggleMenu"
+        >Min profil</router-link>
       </li>
       <li>
         <router-link to="/status" @click.native="toggleMenu">Orderstatus</router-link>
@@ -29,7 +42,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["sideMenuOpen"])
+    ...mapState(["sideMenuOpen", "registered"])
   },
   methods: {
     toggleMenu() {
