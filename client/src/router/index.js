@@ -4,8 +4,8 @@ import Home from "@/views/Home.vue";
 import Menu from "@/views/Menu.vue";
 import OurCoffee from "@/views/OurCoffee.vue";
 import Status from "@/views/Status.vue";
-import Profile from '@/views/Profile.vue';
-
+import Profile from "@/views/Profile.vue";
+import OrderHistory from "@/views/OrderHistory.vue";
 
 Vue.use(VueRouter);
 
@@ -34,6 +34,11 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: Profile
+  },
+  {
+    path: "/profile/:id",
+    name: "orderhistory",
+    component: OrderHistory
   }
 ];
 

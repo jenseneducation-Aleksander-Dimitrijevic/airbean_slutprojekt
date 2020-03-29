@@ -1,5 +1,5 @@
 <template>
-  <div class="register-cart">
+  <div class="register-cart" v-if="typeof registered.id === 'undefined' && redirect">
     <div class="cart-text">
       <img :src="require('@/assets/img/airbeanicon.jpg')" alt="logo" />
       <h1>
@@ -11,18 +11,26 @@
         <span>du spara och se din orderhistorik.</span>
       </h6>
     </div>
-    <Form />
-    <router-link :to="{name: 'profile'}">
-      <button class="goRegister">Brew me a cup!</button>
-    </router-link>
+    <Form v-if="typeof registered.id === 'undefined'" />
   </div>
 </template>
 
 <script>
 import Form from "@/components/Form.vue";
+import { mapState } from "vuex";
 export default {
   components: {
     Form
+  },
+  computed: {
+    ...mapState(["registered"])
+  },
+
+  methods: {
+    redirect() {
+      const path = "/profile";
+      if (this.$route.path !== "/profile/:id") this.$router.push(path);
+    }
   }
 };
 </script>
@@ -59,22 +67,6 @@ export default {
     span {
       display: block;
     }
-  }
-
-  .goRegister {
-    width: 100%;
-    border: none;
-    outline: none;
-    padding: 13px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 2rem auto;
-    font-size: 1.5rem;
-    margin-top: 0.7rem;
-    text-align: center;
-    border-radius: 40px;
-    background: #2e2925;
   }
 }
 </style>

@@ -11,7 +11,10 @@ export default new Vuex.Store({
     cartOpen: false,
     isLoading: false,
     sideMenuOpen: false,
-    menuItems: MenuServices.getMenuItems().then(res => res.data)
+    menuItems: MenuServices.getMenuItems().then(res => res.data),
+
+    registered: {},
+    orderHistory: []
   },
   getters: {
     getTotalPrice(state) {
@@ -40,9 +43,31 @@ export default new Vuex.Store({
     },
     CREATE_ORDER(state, order) {
       state.newOrder = order.data;
+
+      const user = {
+        id: state.registered.id,
+        order: state.newOrder
+      };
+      state.orderHistory.push(user);
+      console.log(state.orderHistory);
+      console.log(state.registered);
     },
     SET_LOADER(state) {
       state.isLoading = !state.isLoading;
+    },
+    SET_NEW_USER(state, id) {
+      state.registered = id;
+      const parsed = JSON.stringify(state.registered);
+      localStorage.setItem("user", parsed);
+    },
+    CHECK_LOCALSTORAGE(state) {
+      if (localStorage.getItem("user")) {
+        try {
+          state.registered = JSON.parse(localStorage.getItem("user"));
+        } catch (e) {
+          localStorage.removeItem("user");
+        }
+      }
     }
   },
   actions: {
@@ -64,6 +89,12 @@ export default new Vuex.Store({
       const order = await MenuServices.createNewOrder();
       context.commit("SET_LOADER");
       context.commit("CREATE_ORDER", order);
+    },
+    setNewUser(context, id) {
+      context.commit("SET_NEW_USER", id);
+    },
+    checkLocalStorage(context) {
+      context.commit("CHECK_LOCALSTORAGE");
     }
   }
 });
