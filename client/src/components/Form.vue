@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import MenuServices from "@/api/MenuServices";
+import ProductServices from "@/api/ProductServices";
 export default {
   name: "Form",
 
@@ -44,7 +44,7 @@ export default {
         return;
       } else {
         const uuid = {
-          id: await MenuServices.getUUID().then(res => res.data.key),
+          id: await ProductServices.getUUID().then(res => res.data.key),
           name: this.name,
           email: this.email
         };

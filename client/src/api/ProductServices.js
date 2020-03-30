@@ -15,7 +15,7 @@ export default {
   getUUID() {
     return apiClient.get("/api/beans/key");
   },
-  persistOrder(order) {
+  postOrders(order) {
     return apiClient.post("/api/beans/new-order", order);
   }
 };

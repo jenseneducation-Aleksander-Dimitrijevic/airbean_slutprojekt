@@ -11,7 +11,7 @@
       <ul v-for="order in orderHistory" :key="order.id">
         <li>
           <div>
-            <span class="order-nr">#{{ order.order.orderNr }}</span>
+            <span class="order-nr">#{{ order.items.orderNr }}</span>
             <span>total ordersumma</span>
           </div>
           <div>
