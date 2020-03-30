@@ -11,5 +11,11 @@ export default {
   },
   createNewOrder() {
     return apiClient.post("/api/beans");
+  },
+  getUUID() {
+    return apiClient.get("/api/beans/key");
+  },
+  persistOrder(order) {
+    return apiClient.post("/api/beans/new-order", order);
   }
 };

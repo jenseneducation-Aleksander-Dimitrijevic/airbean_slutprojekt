@@ -26,7 +26,11 @@
     <span v-show="!getTotalPrice">Inget i korgen</span>
 
     <router-link @click.native="itemReset" :to="{name: 'status'}">
-      <button @click="createOrder" class="order-btn" v-show="getTotalPrice">Take my money!</button>
+      <button
+        @click="[createOrder(), persistOrder()]"
+        class="order-btn"
+        v-show="getTotalPrice"
+      >Take my money!</button>
     </router-link>
   </div>
 </template>
@@ -40,7 +44,7 @@ export default {
     ...mapGetters(["getTotalPrice"])
   },
   methods: {
-    ...mapActions(["createOrder", "itemReset"])
+    ...mapActions(["createOrder", "itemReset", "persistOrder"])
   }
 };
 </script>

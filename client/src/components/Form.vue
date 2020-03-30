@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import MenuServices from "@/api/MenuServices";
 export default {
   name: "Form",
 
@@ -36,14 +37,14 @@ export default {
   },
 
   methods: {
-    register() {
+    async register() {
       if (this.name == "" || this.email == "" || this.marked == false) {
         this.errMsg = "You missed one or more detail(s)";
         this.error = true;
         return;
       } else {
         const uuid = {
-          id: Date.now(),
+          id: await MenuServices.getUUID().then(res => res.data.key),
           name: this.name,
           email: this.email
         };

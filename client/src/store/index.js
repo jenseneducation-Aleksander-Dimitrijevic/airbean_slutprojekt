@@ -68,6 +68,10 @@ export default new Vuex.Store({
           localStorage.removeItem("user");
         }
       }
+    },
+
+    PERSIST_ORDER(state, order) {
+      console.log(order.data);
     }
   },
   actions: {
@@ -95,6 +99,10 @@ export default new Vuex.Store({
     },
     checkLocalStorage(context) {
       context.commit("CHECK_LOCALSTORAGE");
+    },
+    async persistOrder(context) {
+      const order = await MenuServices.persistOrder();
+      context.commit("PERSIST_ORDER", order);
     }
   }
 });
