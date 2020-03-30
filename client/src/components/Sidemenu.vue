@@ -29,6 +29,7 @@
           :to="{name:'orderhistory', params: {id: registered.id}}"
           class="b-bottom"
           @click.native="toggleMenu"
+          prevent
         >Min profil</router-link>
       </li>
       <li>

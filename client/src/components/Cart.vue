@@ -26,11 +26,7 @@
     <span v-show="!getTotalPrice">Inget i korgen</span>
 
     <router-link @click.native="itemReset" :to="{name: 'status'}">
-      <button
-        @click="[createOrder(), persistOrder()]"
-        class="order-btn"
-        v-show="getTotalPrice"
-      >Take my money!</button>
+      <button @click="createOrder" class="order-btn" v-show="getTotalPrice">Take my money!</button>
     </router-link>
   </div>
 </template>
@@ -40,11 +36,19 @@ import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   name: "Cart",
   computed: {
-    ...mapState(["cartOpen", "items"]),
+    ...mapState(["cartOpen", "items", "newOrder"]),
     ...mapGetters(["getTotalPrice"])
   },
   methods: {
-    ...mapActions(["createOrder", "itemReset", "persistOrder"])
+    ...mapActions(["itemReset"]),
+    createOrder() {
+      const orderHistory = {
+        orderNumber: this.newOrder.orderNr,
+        Items: this.items
+      };
+
+      this.$store.dispatch("createOrder", orderHistory);
+    }
   }
 };
 </script>

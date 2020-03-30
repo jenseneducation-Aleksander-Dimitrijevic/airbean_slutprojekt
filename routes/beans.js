@@ -23,11 +23,10 @@ router.post("/", async (req, res) => {
 
 router.post("/new-order", async (req, res) => {
   try {
-    const order = await createOrder(generateOrderNr());
-    res.json(order);
-    console.log(order);
+    const order = await createOrder(req.body);
+    res.send(order);
   } catch (error) {
-    res.status(401).json({ message: Error });
+    res.status(401).json({ message: error });
   }
 });
 
