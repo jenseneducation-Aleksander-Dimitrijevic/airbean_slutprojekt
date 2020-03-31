@@ -13,13 +13,6 @@ export default {
   },
   CREATE_ORDER(state, order) {
     state.newOrder = order.data;
-
-    const userOrder = {
-      id: state.registered.id,
-      items: state.newOrder
-    };
-
-    state.orderHistory.push(userOrder);
   },
   SET_LOADER(state) {
     state.isLoading = !state.isLoading;
@@ -37,5 +30,9 @@ export default {
         localStorage.removeItem("user");
       }
     }
+  },
+  SET_ORDERHISTORY(state, newOrder) {
+    state.orderHistory.push(newOrder);
+    console.log(state.orderHistory);
   }
 };

@@ -1,3 +1,1 @@
-{"orderNumber":"AB1585605379419Y","timeStamp":1585605436404,"Items":[{"title":"Kaffe Latte","price":54,"count":9},{"title":"Cappuccino","price":49,"count":11},{"title":"Bryggkaffe","price":39,"count":5}],"totalValue":1220,"_id":"NMkqBprhkr1adLcU"}
-{"orderNumber":"AB1585605313324X","timeStamp":1585605381435,"Items":[{"title":"Bryggkaffe","price":39,"count":2},{"title":"Caffè Doppio","price":49,"count":2},{"title":"Latte Macchiato","price":49,"count":2},{"title":"Kaffe Latte","price":54,"count":1},{"title":"Cortado","price":39,"count":2}],"totalValue":406,"_id":"duYfZxeWHM4a8R7g"}
-{"timeStamp":1585606414219,"Items":[{"title":"Bryggkaffe","price":39,"count":1}],"totalValue":39,"_id":"YBUP8kdrAgjXHEU4"}
+{"timeStamp":"2020-03-31T21:19:41.331Z","Items":[{"title":"Cappuccino","price":49,"count":1}],"totalValue":49,"_id":"qQyndDxOwhVFKHjc"}

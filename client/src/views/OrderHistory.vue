@@ -8,21 +8,25 @@
     </div>
     <div class="order-details">
       <h2>Orderhistorik</h2>
-      <ul v-for="order in orderHistory" :key="order.id">
+      <ul v-for="(order, index) in orderHistory" :key="index">
         <li>
           <div>
-            <span class="order-nr">#{{ order.items.orderNr }}</span>
+            <span class="order-nr">#{{ order.orderNumber }}</span>
             <span>total ordersumma</span>
           </div>
           <div>
-            <span class="date">20/10/03</span>
-            <span class="item-cost">231 kr</span>
+            <span
+              class="date"
+            >{{ order.timeStamp.getFullYear() }}/{{ order.timeStamp.getMonth() }}/{{ order.timeStamp.getDate() }}</span>
+            <span
+              class="item-cost"
+            >{{ order.Items.reduce((sum, item) => { return sum = item.price * item.count}, 0) }} kr</span>
           </div>
         </li>
       </ul>
       <div class="summary">
         <span>Totalt spenderat</span>
-        <span class="total-amount">1234 kr</span>
+        <span class="total-amount">{{ totalValue }} kr</span>
       </div>
     </div>
   </div>
@@ -36,7 +40,16 @@ export default {
     Banner
   },
   computed: {
-    ...mapState(["registered", "orderHistory"])
+    ...mapState(["registered", "orderHistory"]),
+    totalValue() {
+      let amount = 0;
+      amount += this.orderHistory
+        .map(item => item.totalValue)
+        .reduce((a, b) => {
+          return a + b;
+        }, 0);
+      return amount;
+    }
   }
 };
 </script>

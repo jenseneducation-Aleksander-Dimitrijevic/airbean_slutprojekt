@@ -14,17 +14,21 @@ export default {
     context.commit("ITEM_RESET");
     context.commit("TOGGLE_CART");
   },
-  async createOrder(context, orderHistory) {
+  async createOrder(context) {
     context.commit("SET_LOADER");
-    const order = await ProductServices.createNewOrder();
+    const order = await ProductServices.createNewOrder(() => {
+      context.commit("CREATE_ORDER", order);
+    });
     context.commit("SET_LOADER");
-    context.commit("CREATE_ORDER", order);
-    ProductServices.postOrders(orderHistory);
   },
   setNewUser(context, id) {
     context.commit("SET_NEW_USER", id);
   },
   checkLocalStorage(context) {
     context.commit("CHECK_LOCALSTORAGE");
+  },
+  async postOrder(context, newOrder) {
+    await ProductServices.postOrders(newOrder);
+    context.commit("SET_ORDERHISTORY", newOrder);
   }
 };

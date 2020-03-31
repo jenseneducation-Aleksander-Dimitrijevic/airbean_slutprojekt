@@ -5,7 +5,7 @@ module.exports = {
   async createOrder(body) {
     const order = {
       orderNumber: body.orderNumber,
-      timeStamp: Date.now(),
+      timeStamp: body.timeStamp,
       Items: body.Items,
       totalValue: body.Items.reduce((sum, item) => {
         return sum + item.price * item.count;
