@@ -26,7 +26,11 @@
     <span v-show="!getTotalPrice">Inget i korgen</span>
 
     <router-link @click.native="itemReset" :to="{name: 'status'}">
-      <button @click="createOrder" class="order-btn" v-show="getTotalPrice">Take my money!</button>
+      <button
+        @click="[createOrder(), postOrder()]"
+        class="order-btn"
+        v-show="getTotalPrice"
+      >Take my money!</button>
     </router-link>
   </div>
 </template>
@@ -40,14 +44,19 @@ export default {
     ...mapGetters(["getTotalPrice"])
   },
   methods: {
-    ...mapActions(["itemReset"]),
-    createOrder() {
+    ...mapActions(["itemReset", "createOrder"]),
+
+    postOrder() {
       const orderHistory = {
         orderNumber: this.newOrder.orderNr,
-        Items: this.items
+        timeStamp: new Date(),
+        Items: this.items,
+        totalValue: this.items.reduce((sum, item) => {
+          return (sum = item.price * item.count);
+        }, 0)
       };
 
-      this.$store.dispatch("createOrder", orderHistory);
+      this.$store.dispatch("postOrder", orderHistory);
     }
   }
 };
